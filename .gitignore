@@ -1,0 +1,11 @@
+
+.DS_Store
+.idea/
+bin/
+obj/
+.vscode/
+.vs/
+*.DotSettings.user
+*.ncrunchsolution*
+*.suo
+*.csproj.user
