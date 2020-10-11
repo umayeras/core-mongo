@@ -60,7 +60,7 @@ namespace WebApp
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Asp.Net Core WebApi with Mongo Db V1");
             });
             app.UseRouting();
             app.UseAuthorization();
