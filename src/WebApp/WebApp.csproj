@@ -8,5 +8,9 @@
       <ProjectReference Include="..\WebApp.Business\WebApp.Business.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    </ItemGroup>
+
 
 </Project>
