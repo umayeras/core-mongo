@@ -48,14 +48,7 @@ namespace WebApp.Data.Repositories
         {
             return collection.Find(filterExpression).ToEnumerable();
         }
-
-        public virtual IEnumerable<TProjected> FilterBy<TProjected>(
-            Expression<Func<TEntity, bool>> filterExpression,
-            Expression<Func<TEntity, TProjected>> projectionExpression)
-        {
-            return collection.Find(filterExpression).Project(projectionExpression).ToEnumerable();
-        }
-
+        
         public virtual TEntity FindOne(Expression<Func<TEntity, bool>> filterExpression)
         {
             return collection.Find(filterExpression).FirstOrDefault();
