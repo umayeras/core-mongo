@@ -1,13 +1,13 @@
-# Asp.Net Core WebApi with MongoDB
+# Asp.Net 5 WebApi with MongoDB
 
-A sample project for Asp.Net Core WebApi with MongoDB
+A sample project for Asp.Net 5 WebApi with MongoDB
 
 
 ## Scope
 
 This sample project includes the folllowing:
 
-- Asp.Net Core 3.1
+- Asp.Net 5.0
 - MongoDB configuration
 - Generic Repository Pattern
 - MS Dependency Injection
