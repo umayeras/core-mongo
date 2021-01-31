@@ -1,9 +1,8 @@
-using System.Collections.Generic;
+using System.Linq;
 using WebApp.Business.Abstract.Factories;
 using WebApp.Business.Abstract.Services;
 using WebApp.Data.Abstract.Repositories;
 using WebApp.Model.Constants;
-using WebApp.Model.Entities;
 using WebApp.Model.Requests;
 using WebApp.Model.Results;
 
@@ -20,14 +19,19 @@ namespace WebApp.Business.Services
             this.factory = factory;
         }
 
-        public IEnumerable<Sample> GetAll()
+        public ServiceDataResult GetAll()
         {
-            return repository.AsQueryable();
+            var samples = repository.AsQueryable()
+                .Select(p => new {p.Id, p.Title})
+                .ToList();
+
+            return ServiceDataResult.Success(samples);
         }
 
-        public Sample Get(string id)
+        public ServiceDataResult Get(string id)
         {
-            return repository.FindById(id);
+            var sample = repository.FindById(id);
+            return ServiceDataResult.Success(sample);
         }
 
         public ServiceResult Add(AddSampleRequest request)
