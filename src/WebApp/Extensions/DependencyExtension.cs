@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using WebApp.Business.Abstract.Factories;
 using WebApp.Business.Abstract.Services;
+using WebApp.Business.Factories;
 using WebApp.Business.Services;
 using WebApp.Data.Abstract.Factories;
 using WebApp.Data.Abstract.Repositories;
@@ -16,6 +18,7 @@ namespace WebApp.Extensions
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ISampleRepository, SampleRepository>();
             services.AddScoped<ISampleService, SampleService>();
+            services.AddScoped<ISampleFactory, SampleFactory>();
         }
     }
 }

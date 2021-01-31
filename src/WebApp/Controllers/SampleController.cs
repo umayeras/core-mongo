@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Business.Abstract.Services;
 using WebApp.Model.Entities;
+using WebApp.Model.Requests;
 
 namespace WebApp.Controllers
 {
@@ -28,9 +29,9 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Sample sample)
+        public IActionResult Post(AddSampleRequest request)
         {
-            var result = sampleService.Add(sample);
+            var result = sampleService.Add(request);
             return Ok(result.Message);
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using WebApp.Model.Entities;
+using WebApp.Model.Requests;
 using WebApp.Model.Results;
 
 namespace WebApp.Business.Abstract.Services
@@ -8,6 +9,6 @@ namespace WebApp.Business.Abstract.Services
     {
         IEnumerable<Sample> GetAll();
         Sample Get(string id);
-        ServiceResult Add(Sample sample);
+        ServiceResult Add(AddSampleRequest request);
     }
 }
