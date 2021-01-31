@@ -8,5 +8,7 @@ namespace WebApp.Business.Abstract.Services
         ServiceDataResult GetAll();
         ServiceDataResult Get(string id);
         ServiceResult Add(AddSampleRequest request);
+        ServiceResult Update(UpdateSampleRequest request);
+        ServiceResult Delete(string id);
     }
 }

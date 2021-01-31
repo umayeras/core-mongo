@@ -53,5 +53,49 @@ namespace WebApp.Controllers
                 ? Problem(Messages.GeneralError)
                 : Ok(result.Message);
         }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(string), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(string), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int) HttpStatusCode.InternalServerError)]
+        public IActionResult Put(UpdateSampleRequest request)
+        {
+            var validationResult = requestValidator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(Messages.InvalidRequest);
+            }
+
+            var result = sampleService.Update(request);
+
+            return !result.IsSuccess
+                ? Problem(Messages.GeneralError)
+                : Ok(result.Message);
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(typeof(string), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(string), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int) HttpStatusCode.NotFound)]
+        [ProducesResponseType((int) HttpStatusCode.InternalServerError)]
+        public IActionResult Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest(Messages.InvalidRequest);
+            }
+
+            var sample = sampleService.Get(id);
+            if (sample.Data == null)
+            {
+                return NotFound(Messages.NotFound);
+            }
+
+            var result = sampleService.Delete(id);
+
+            return !result.IsSuccess
+                ? Problem(Messages.GeneralError)
+                : Ok(result.Message);
+        }
     }
 }

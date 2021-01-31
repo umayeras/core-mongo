@@ -3,7 +3,7 @@ namespace WebApp.Model.Constants
     public static class Messages
     {
         public static string GeneralError => "Something went wrong. Please try again later.";
-        public static string GeneralSuccess => "Operation is successful";
+        public static string NotFound => "Item not found";
         public static string InvalidRequest => "Invalid Request";
         public static string AddingSuccess => "Adding is successful";
         public static string AddingFailed => "Adding is failed!";

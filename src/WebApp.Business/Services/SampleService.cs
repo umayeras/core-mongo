@@ -43,5 +43,25 @@ namespace WebApp.Business.Services
                 ? ServiceResult.Error(Messages.AddingFailed)
                 : ServiceResult.Success(Messages.AddingSuccess);
         }
+
+        public ServiceResult Update(UpdateSampleRequest request)
+        {
+            var currentSample = repository.FindById(request.Id);
+            var sample = factory.CreateUpdateSample(currentSample, request);
+            var result = repository.ReplaceOne(sample);
+
+            return !result
+                ? ServiceResult.Error(Messages.UpdatingFailed)
+                : ServiceResult.Success(Messages.UpdatingSuccess);
+        }
+        
+        public ServiceResult Delete(string id)
+        {
+            var result = repository.DeleteById(id);
+
+            return !result
+                ? ServiceResult.Error(Messages.DeletingFailed)
+                : ServiceResult.Success(Messages.DeletingSuccess);
+        }
     }
 }
