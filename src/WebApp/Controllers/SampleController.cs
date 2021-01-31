@@ -4,6 +4,7 @@ using WebApp.Business.Abstract.Services;
 using WebApp.Model.Constants;
 using WebApp.Model.Requests;
 using WebApp.Model.Results;
+using WebApp.Validation.Abstract;
 
 namespace WebApp.Controllers
 {
@@ -12,10 +13,12 @@ namespace WebApp.Controllers
     public class SampleController : ControllerBase
     {
         private readonly ISampleService sampleService;
+        private readonly IRequestValidator requestValidator;
 
-        public SampleController(ISampleService sampleService)
+        public SampleController(ISampleService sampleService, IRequestValidator requestValidator)
         {
             this.sampleService = sampleService;
+            this.requestValidator = requestValidator;
         }
 
         [HttpGet]
@@ -38,7 +41,8 @@ namespace WebApp.Controllers
         [ProducesResponseType((int) HttpStatusCode.InternalServerError)]
         public IActionResult Post(AddSampleRequest request)
         {
-            if (request == null)
+            var validationResult = requestValidator.Validate(request);
+            if (!validationResult.IsValid)
             {
                 return BadRequest(Messages.InvalidRequest);
             }

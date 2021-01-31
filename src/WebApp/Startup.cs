@@ -20,6 +20,7 @@ namespace WebApp
         {
             services.AddDependencyResolvers();
             services.AddHealthChecks();
+            services.AddFluentValidation();
             services.AddControllers();
             services.AddSwaggerDocumentation();
         }
