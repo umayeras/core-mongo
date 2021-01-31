@@ -5,9 +5,10 @@ using WebApp.Model.Entities;
 
 namespace WebApp.Data.Repositories
 {
-    public class SampleRepository : BaseRepository<Sample>,ISampleRepository
+    public class SampleRepository : BaseRepository<Sample>, ISampleRepository
     {
-        public SampleRepository(IDbConnectionFactory factory, ILogger<BaseRepository<Sample>> logger) : base(factory, logger)
+        public SampleRepository(IDbConnectionFactory factory, ILogger<BaseRepository<Sample>> logger)
+            : base(factory, logger)
         {
         }
     }

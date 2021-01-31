@@ -54,7 +54,7 @@ namespace WebApp.Business.Services
                 ? ServiceResult.Error(Messages.UpdatingFailed)
                 : ServiceResult.Success(Messages.UpdatingSuccess);
         }
-        
+
         public ServiceResult Delete(string id)
         {
             var result = repository.DeleteById(id);
