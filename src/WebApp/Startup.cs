@@ -19,9 +19,9 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDependencyResolvers();
-            services.AddHealthChecks();
-            services.AddFluentValidation();
             services.AddControllers();
+            services.AddHealthCheck(Configuration);
+            services.AddFluentValidation();
             services.AddSwaggerDocumentation();
         }
 
@@ -31,14 +31,17 @@ namespace WebApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHealthChecks("/health");
+            
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerDocumentation();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthCheck();
+                endpoints.MapControllers();
+            });
         }
     }
 }
