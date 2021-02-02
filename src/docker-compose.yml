@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  sampledb:
+    image: mongo
+
+  webapp:
+    image: ${DOCKER_REGISTRY-}webapp
+    build:
+      context: .
+      dockerfile: WebApp/Dockerfile

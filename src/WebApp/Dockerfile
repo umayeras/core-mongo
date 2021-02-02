@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+WORKDIR /src
+COPY ["WebApp/WebApp.csproj", "WebApp/"]
+COPY ["WebApp.Business/WebApp.Business.csproj", "WebApp.Business/"]
+COPY ["WebApp.Model/WebApp.Model.csproj", "WebApp.Model/"]
+COPY ["WebApp.Data/WebApp.Data.csproj", "WebApp.Data/"]
+COPY ["WebApp.Validation/WebApp.Validation.csproj", "WebApp.Validation/"]
+RUN dotnet restore "WebApp/WebApp.csproj"
+COPY . .
+WORKDIR "/src/WebApp"
+RUN dotnet build "WebApp.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "WebApp.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "WebApp.dll"]
