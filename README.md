@@ -11,3 +11,7 @@ This sample project includes the folllowing:
 - MongoDB configuration
 - Generic Repository Pattern
 - MS Dependency Injection
+- Fluent Validation
+- Health Monitor
+- Swagger
+- Docker
